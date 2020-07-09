@@ -15,7 +15,7 @@ components:
   # Common data models
   ####################
   schemas:
-   PruebaIngreso:
+    PruebaIngreso:
       type: object
       required: 
         - id
@@ -134,7 +134,7 @@ components:
           type: string
           format: date-time     
         empleado:
-          $ref: '#/components/schemas/Empleado'  #manuel 
+          type: string 
         clausula:
           type: array
           items:
@@ -160,7 +160,7 @@ components:
         areaNegocio:
           type: array
           items:
-            $ref: '#/components/schemas/AreaNegocio'
+            type: string #manuel
         privacidad:
           type: string
         fechaRealizacion:
@@ -213,7 +213,7 @@ components:
         rutaAlmacenamiento:
           type: string
         empleado:
-          $ref: '#/components/schemas/Empleado'
+          type: string #manuel
           
     DetalleSolicitud:
       type: object
@@ -236,9 +236,9 @@ components:
         requerimientoArea:
           type: array
           items:
-            $ref: '#/components/schemas/RequerimientoArea' 
+            type: string #manuel
         responsable:
-          $ref: '#/components/schemas/Empleado'
+          type: string #manuel
         aprobacion: 
           type: string
           enum: [pendiente, aprobado, rechazado]
@@ -272,9 +272,9 @@ components:
         areaNegocio:
           type: array
           items:
-            $ref: '#/components/schemas/AreaNegocio' 
+            type: string #manuel 
         convenios:
-          $ref: 'https://raw.githubusercontent.com/manuelgonzalezb/GATAIAN/master/Gobierno/2.%20Negocio/4.%20RRHH%20Gataian/contratos/dominios/Convenios-1.0.0.yaml?token=AGNQXQBZHXUSA4WFS5BBRQS7AUPBS/components/schemas/Convenios'
+          type: string #manuel
           
           
   ######################################
