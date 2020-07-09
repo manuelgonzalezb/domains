@@ -1,0 +1,150 @@
+# OpenAPI version identifier - required for OpenAPI 3.0 domains
+openapi: 3.0.0
+
+#######################
+# Optional info section
+#######################
+info:
+  title: GATAIAN dominio Demográfico
+  description: Este es el dominio demográfico para la app Recursos humanos Gataian
+  version: '1.0.0'
+
+components:
+
+  ####################
+  # Common data models
+  ####################
+  schemas:
+    Departamento:
+      type: object
+      required:
+        - id
+        - códigonacional
+        - nombre
+      properties:
+        id:
+          description:  este es el indentificador interno único del departamento
+          type: integer
+          format: int64
+        codigonacional:
+          description:  codigo del departamento 
+          type: integer
+          format: int64
+        nombre:
+         type: string
+    Pais:
+      type: object
+      required: 
+        - id
+        - nombre
+        - indicativo
+      properties:
+        id:
+          description: este el indicador interno único del país
+          type: integer
+          format: int64
+        nombre:
+          type: string
+        indicativo:
+          description: indicarivo del país
+          type: integer
+          format: int32 
+    Ciudad:
+      type: object
+      required:
+       - id
+       - departamento
+       - nombre
+       - pais
+       - indicativo 
+      properties:
+        id:
+          description: este es el indicador único de ciudad 
+          type: integer
+          format: int64 
+        departamento: 
+          $ref: '#/components/schemas/Departamento'
+        nombre:
+          type: string
+        pais:
+          $ref: '#/components/schemas/Pais'
+        indicativo:
+          type: integer
+          format: int32
+    Direccion:
+      type: object
+      required: 
+      - id
+      - direccion
+      - ciudad
+      - barrio
+      - telefono
+      properties:
+        id:
+          type: integer
+          format: int64
+        direccion: 
+          type: string
+        ciudad:
+          $ref: '#/components/schemas/Ciudad'
+        barrio:
+          type: string 
+        complemento:
+          type: string 
+        telefono:
+          $ref: '#/components/schemas/Telefono'
+   
+    Telefono:
+      type: object
+      required:
+        - id
+        - numero
+        - tipo 
+      properties:
+        id:
+          type: integer 
+          format: int64
+        numero:
+          type: integer 
+          format: int64
+        tipo:
+          $ref: '#/components/schemas/TipoTelefono'
+             
+  ####################
+  # Catalogs del domino 
+  ####################
+    TipoTelefono:
+      description: Tipo de telefono
+      type: object
+      required: 
+        - codigo
+        - nombre 
+      properties:
+        codigo: 
+          type: integer 
+          format: int32 
+        nombre:  
+          type: string
+          
+          
+  ####################
+  # Common parameters
+  ####################
+  parameters:
+    offsetParam:
+      name: offset
+      in: query
+      schema:
+        type: integer
+        minimum: 0
+      description: The number of items to skip before returning the results
+    limitParam:
+      in: query
+      name: limit
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 100
+        default: 20
+      description: The number of items to return
