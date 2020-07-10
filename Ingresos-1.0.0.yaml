@@ -48,15 +48,15 @@ components:
         - fechaSolicitud
       properties:
         solicitante:
-          type: string ##manuel
+          $ref: 'https://raw.githubusercontent.com/manuelgonzalezb/domains/master/Gataian-DominioEmpleados-1.0.0.yaml#/components/schemas/Empleado'
         postulado:
           type: array
           items:
             $ref: '#/components/schemas/Postulado'
         areaNegocio:
-          type: string ##Manuel
+          $ref: 'https://raw.githubusercontent.com/manuelgonzalezb/domains/master/Gataian-DominioEmpleados-1.0.0.yaml#/components/schemas/AreaNegocio'
         perfil:
-          type: string
+          $ref: 'https://raw.githubusercontent.com/manuelgonzalezb/domains/master/Gataian-DominioEmpleados-1.0.0.yaml#/components/schemas/Perfil'
         estado:
           type: string
         fechaIngreso:
@@ -68,7 +68,7 @@ components:
         detalleSolicitud:
           type: array
           items:
-            $ref: '#/components/schemas/DetalleSolicitud' 
+            $ref: '#/components/schemas/DetalleSolicitud'
         fechaSolicitud:
           type: string
           format: date-time            
@@ -94,7 +94,7 @@ components:
         apellidos:
           type: string
         tipoDocumento:
-          $ref: '#/components/schemas/TipoDocumento'
+          $ref: 'https://raw.githubusercontent.com/manuelgonzalezb/domains/master/Gataian-DominioEmpleados-1.0.0.yaml#/components/schemas/TipoDocumento'
         numeroDocumento:
           type: string
         estado:
@@ -104,7 +104,7 @@ components:
           items:
             $ref: '#/components/schemas/Entrevista'
         direccion:
-          $ref: '#/components/schemas/Direccion'
+          $ref: 'https://raw.githubusercontent.com/manuelgonzalezb/domains/master/Gataian-DominioDemografico-1.0.0-domain.yaml#/components/schemas/Direccion'
         curriculum: 
           $ref: '#/components/schemas/Documento'
     
@@ -134,7 +134,7 @@ components:
           type: string
           format: date-time     
         empleado:
-          type: string 
+          $ref: 'https://raw.githubusercontent.com/manuelgonzalezb/domains/master/Gataian-DominioEmpleados-1.0.0.yaml#/components/schemas/Empleado'
         clausula:
           type: array
           items:
@@ -145,7 +145,6 @@ components:
       type: object
       required:
         - calificacion
-        - empleadoRealizoEntrevista
         - areaNegocio
         - privacidad
         - idPostulado
@@ -160,7 +159,7 @@ components:
         areaNegocio:
           type: array
           items:
-            type: string #manuel
+            $ref: 'https://raw.githubusercontent.com/manuelgonzalezb/domains/master/Gataian-DominioEmpleados-1.0.0.yaml#/components/schemas/AreaNegocio'
         privacidad:
           type: string
         fechaRealizacion:
@@ -203,7 +202,6 @@ components:
       required:
         - id
         - rutaAlmacenamiento
-        - idEmpleado
       properties:
         id:
           type: integer
@@ -236,9 +234,9 @@ components:
         requerimientoArea:
           type: array
           items:
-            type: string #manuel
+            $ref: 'https://raw.githubusercontent.com/manuelgonzalezb/domains/master/Gataian-DominioEmpleados-1.0.0.yaml#/components/schemas/RequerimientoArea'
         responsable:
-          type: string #manuel
+          $ref: 'https://raw.githubusercontent.com/manuelgonzalezb/domains/master/Gataian-DominioEmpleados-1.0.0.yaml#/components/schemas/Empleado'
         aprobacion: 
           type: string
           enum: [pendiente, aprobado, rechazado]
@@ -272,9 +270,9 @@ components:
         areaNegocio:
           type: array
           items:
-            type: string #manuel 
+            $ref: 'https://raw.githubusercontent.com/manuelgonzalezb/domains/master/Gataian-DominioEmpleados-1.0.0.yaml#/components/schemas/AreaNegocio' 
         convenios:
-          type: string #manuel
+          $ref: 'https://raw.githubusercontent.com/manuelgonzalezb/domains/master/Gataian-DominiConvenios-1.0.0.yaml#/components/schemas/Convenio'
           
           
   ######################################
@@ -305,27 +303,7 @@ components:
           format: int64
         nombre:
           type: string   
-  ####################
-  # Corresponde al dominio de demograficos
-  ####################
-    Direccion:
-      type: object
-      description: entidad que define la ubicacion geografica de quien la referencie
-      required:
-        - id
-        - direccion
-        - ciudad
-        - telefono
-      properties:
-        id:
-          type: integer
-          format: int64
-        direccion:
-          type: string
-        ciudad:
-          type: string
-        telefono:
-          type: string
+  
   parameters:
     offsetParam:
       name: offset
