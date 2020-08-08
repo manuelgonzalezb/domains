@@ -85,6 +85,7 @@ components:
         - entrevista
         - direccion
         - curriculum
+        - procedenciaPostulado
       properties:
         fechaEntrevista:
           type: string
@@ -107,6 +108,9 @@ components:
           $ref: 'https://raw.githubusercontent.com/manuelgonzalezb/domains/master/Gataian-DominioDemografico-1.0.0-domain.yaml#/components/schemas/Direccion'
         curriculum: 
           $ref: '#/components/schemas/Documento'
+        procedenciaPostulado:
+          type: string
+          enum: [INTERNO,EXTERNO]
     
     Contrato:
       type: object
