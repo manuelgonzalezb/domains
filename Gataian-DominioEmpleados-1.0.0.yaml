@@ -118,11 +118,11 @@ components:
           items:
             $ref: 'https://raw.githubusercontent.com/manuelgonzalezb/domains/master/Ingresos-1.0.0.yaml#/components/schemas/Documento'
         tipoDocumento:
-          $ref: '#/components/schemas/TipoDocumento'
+          $ref: '#/components/schemas/Tipo'
         numeroDocumento:
           type: string
         estado:
-          type: string
+          $ref: '#/components/schemas/Estado'
         direccion:
           $ref: 'https://raw.githubusercontent.com/manuelgonzalezb/domains/master/Gataian-DominioDemografico-1.0.0-domain.yaml#/components/schemas/Direccion'
         genero:
@@ -223,8 +223,318 @@ components:
           type: integer
           format: int32
           description: tiempo expresado en minutos en el que tarda el area en resolver el requerimiento 
-
-
+    
+    Aprobacion:
+      type: object
+      required:
+        - id
+        - aprobador
+        - areaNegocio
+        - aprobado
+      properties:
+        id:
+          type: integer
+          format: int64
+        aprobador:
+          $ref: '#/components/schemas/Empleado'
+        areaNegocio:
+          $ref: '#/components/schemas/AreaNegocio'
+        fechaAprobacion:
+          type: string
+          format: date-time
+        aprobado:
+          type: boolean
+          
+    PasivoLaboral:
+      type: object
+      required:
+        - id
+        - fechaIngreso
+        - empleado
+      properties:
+        id:
+          type: integer
+          format: int64
+        nombre:
+          type: string
+        diasVacaciones:
+          type: integer
+          format: int32
+          minLength: 1
+          maxLength: 2
+        diasTomados:
+          type: integer
+          format: int32
+          minLength: 1
+          maxLength: 2
+        empleado:
+          $ref: '#/components/schemas/Empleado'
+        fechaIngreso:
+          type: string
+          format: date
+        fechaCalculo:
+          type: string
+          format: date-time
+        topeDias:
+          type: integer
+          format: int32
+          minLength: 1
+          maxLength: 3
+    
+    SolicitudPasivo:
+      type: object
+      required:
+        - id
+        - empleado
+        - fechaInicio
+        - fechaFin
+        - estado
+      properties:
+        id:
+          type: integer
+          format: int64
+        empleado:
+          $ref: '#/components/schemas/Empleado'
+        lider:
+          $ref: '#/components/schemas/Empleado'
+        fechaInicio:
+          type: string
+          format: date
+        fechaFin:
+          type: string
+          format: date
+        estado:
+          $ref: '#/components/schemas/Estado'
+    
+    ReporteHoras:
+      type: object
+      required:
+        - id
+        - empleado
+        - proyecto
+        - fechaInicio
+        - fechaFin
+        - estado
+      properties:
+        id:
+          type: integer
+          format: int64
+        empleado:
+          $ref: '#/components/schemas/Empleado'
+        proyecto:
+          $ref: '#/components/schemas/Proyecto'
+        actividad:
+          type: string
+        fechaInicio:
+          type: string
+          format: date
+        fechaFin:
+          type: string
+          format: date
+        horasDia:
+          type: array
+          items: 
+            type: integer
+        estado:
+          $ref: '#/components/schemas/Estado'
+        tipo:
+          $ref: '#/components/schemas/Tipo'
+        archivo:
+          $ref: 'https://raw.githubusercontent.com/manuelgonzalezb/domains/master/Ingresos-1.0.0.yaml#/components/schemas/Archivo'
+          
+    Proyecto:
+      type: object
+      required:
+        - id
+        - areaNegocio
+      properties:
+        id:
+          type: integer
+          format: int64
+        nombre:
+          type: integer
+          format: int64
+        areaNegocio:
+          $ref: '#/components/schemas/AreaNegocio'
+        gerenteProyecto:
+          $ref: '#/components/schemas/Empleado'
+          
+    Novedad:
+      type: object
+      required:
+        - id
+        - empleado
+        - areaNegocio
+        - tipoNovedad
+        - estado
+      properties:
+        id:
+          type: integer
+          format: int64
+        nombre:
+          type: string
+        empleado:
+          $ref: '#/components/schemas/Empleado'
+        areaNegocio:
+          $ref: '#/components/schemas/AreaNegocio'
+        tipoNovedad:
+          $ref: '#/components/schemas/Tipo'
+        reportes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReporteHoras'    
+        observaciones:
+          type: array
+          items:
+            $ref: '#/components/schemas/Observacion'
+        adjuntos:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/manuelgonzalezb/domains/master/Ingresos-1.0.0.yaml#/components/schemas/Archivo'
+            
+    Observacion:
+      type: object
+      required:
+        - id
+        - descripcion
+        - reportante
+      properties:
+        id:
+          type: integer
+          format: int64
+        descripcion:
+          type: string
+        reportante:
+          $ref: '#/components/schemas/Empleado'
+        fechaCreacion:
+          type: string
+          format: date-time
+          
+    Evaluacion:
+      type: object
+      required:
+        - id
+        - nombre
+        - estado
+        - tipo
+      properties:
+        id:
+          type: integer
+          format: int64
+        nombre:
+          type: string
+        preguntas:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pregunta'
+        calificacion:
+          $ref: '#/components/schemas/Calificacion'
+        estado:
+          $ref: '#/components/schemas/Estado'
+        areaNegocio:
+          $ref: '#/components/schemas/AreaNegocio'
+        fechaCreacion:
+          type: string
+          format: date-time
+        fechaActualizacion:
+          type: string
+          format: date-time  
+        tipo:
+          $ref: '#/components/schemas/Tipo'
+        evaluador:
+          $ref: '#/components/schemas/Empleado'
+    
+    Asignacion:
+      type: object
+      required:
+        - id
+        - empleado
+        - evaluacion
+        - estado
+      properties:
+        id:
+          type: integer
+          format: int64
+        empleado:
+          $ref: '#/components/schemas/Empleado'
+        evaluacion:
+          $ref: '#/components/schemas/Evaluacion'
+        estado:
+          $ref: '#/components/schemas/Estado'
+        fechaRealizacion:
+          type: string
+          format: date-time
+        capacitaciones:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/manuelgonzalezb/domains/master/Ingresos-1.0.0.yaml#/components/schemas/Capacitacion'
+        
+    Pregunta:
+      type: object
+      required:
+        - id
+        - descripcion
+        - respuestaCorrecta
+      properties:
+        id:
+          type: integer
+          format: int64
+        descripcion:
+          type: string
+        respuesta:
+          type: string
+        respuestaCorrecta:
+          type: string
+        fechaCreacion:
+          type: string
+          format: date-time
+        fechaActualizacion:
+          type: string
+          format: date-time
+        
+    PeriodoDesempeno:
+      type: object
+      required:
+        - id
+        - lider
+        - asignacion
+        - fechaInicio
+        - fechaFin
+        - estado
+      properties:
+        id:
+          type: integer
+          format: int64
+        lider:
+          $ref: '#/components/schemas/Empleado'
+        asignacion:
+          $ref: '#/components/schemas/Asignacion'
+        fechaInicio:
+          type: string
+          format: date-time
+        fechaFin:
+          type: string
+          format: date-time
+        estado:
+          $ref: '#/components/schemas/Estado'
+        rango:
+          type: integer
+          format: int32
+          description: corresponde al periodo de tiempo al que corresponde este periodo
+        tiempo:
+          type: string
+          description: >
+            'unidad del rango:'
+            * DIA
+            * MES
+            * AÑO
+            * SEMANA
+            * SEMESTRE
+            * BIMESTRE
+            * TRIMESTRE
+          enum: [DIA, MES, AÑO, SEMANA, SEMESTRE, BIMESTRE, TRIMESTRE]
+          
+        
   ####################
   # Catalogos
   ####################
@@ -239,7 +549,44 @@ components:
           format: int32
         nombre:
           type: string
-    TipoDocumento:
+    Tipo:
+      type: object
+      required: 
+        - id
+        - codigo
+        - descripcion
+        - entidadNegocio
+      properties:
+        id:
+          type: integer
+          format: int64
+        codigo:
+          type: string
+        descripcion:
+          type: string
+        entidadNegocio:
+          type: string
+          description: aqui se coloca el nombre de la entidad de negocio a la que pertenece el tipo
+    Estado:
+      type: object
+      required:
+        - id
+        - codigo
+        - nombre
+        - entidadNegocio
+      properties:
+        id:
+          type: integer
+          format: int32
+        codigo:
+          type: string
+        nombre:
+          type: string
+        entidadNegocio:
+          type: string
+          description: aqui se coloca el nombre de la entidad de negocio a la que pertenece el tipo  
+          
+    Calificacion:
       type: object
       required: 
         - id
@@ -253,6 +600,7 @@ components:
           type: string
         descripcion:
           type: string
+          
   ####################
   # Common parameters
   ####################
