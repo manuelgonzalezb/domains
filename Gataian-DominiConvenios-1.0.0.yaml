@@ -138,6 +138,13 @@ components:
       schema:
         type: string
       description: codigo unico con el que figura el convenio ante el estado
+    idConvenio:
+      in: path
+      name: idConvenio
+      schema:
+        type: integer
+        format: int32
+      description: corresponde al id de un convenio
 
   #########################
   # Common link definitions
