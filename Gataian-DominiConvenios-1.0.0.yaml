@@ -132,6 +132,12 @@ components:
         type: integer
         format: int32
       description: corresponde al id de la documentacion requerida
+    nit:
+      in: query
+      name: nit
+      schema:
+        type: string
+      description: codigo unico con el que figura el convenio ante el estado
 
   #########################
   # Common link definitions
