@@ -629,3 +629,10 @@ components:
         type: integer
         format: int32
       description: corresponde al id de una profesion
+    idPerfil:
+      in: path
+      name: idPerfil
+      schema:
+        type: integer
+        format: int32
+      description: corresponde al id de un perfil
