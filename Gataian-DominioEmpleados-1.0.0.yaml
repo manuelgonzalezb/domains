@@ -622,3 +622,10 @@ components:
         maximum: 100
         default: 20
       description: The number of items to return
+    idProfesion:
+      in: path
+      name: idProfesion
+      schema:
+        type: integer
+        format: int32
+      description: corresponde al id de una profesion
