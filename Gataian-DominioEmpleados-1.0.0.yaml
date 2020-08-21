@@ -636,3 +636,10 @@ components:
         type: integer
         format: int32
       description: corresponde al id de un perfil
+    idRequisito:
+      in: path
+      name: idRequisito
+      schema:
+        type: integer
+        format: int32
+      description: corresponde al id de un requisito
