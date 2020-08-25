@@ -643,3 +643,17 @@ components:
         type: integer
         format: int32
       description: corresponde al id de un requisito
+    idEmpleado:
+      in: path
+      name: idEmpleado
+      schema:
+        type: integer
+        format: int32
+      description: corresponde al id de un empleado
+    idContacto:
+      in: path
+      name: idContacto
+      schema:
+        type: integer
+        format: int32
+      description: corresponde al id de un contacto
