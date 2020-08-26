@@ -657,3 +657,15 @@ components:
         type: integer
         format: int32
       description: corresponde al id de un contacto
+    numeroDocumento:
+      in: query
+      name: numeroDocumento
+      schema:
+        type: string
+      description: corresponde al numero de documento de identificacion de un empleado
+    codigoEstado:
+      in: query
+      name: codigoEstado
+      schema:
+        type: string
+      description: corresponde al codigo de un estado
