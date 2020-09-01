@@ -655,7 +655,7 @@ components:
       name: idContacto
       schema:
         type: integer
-        format: int32
+        format: int64
       description: corresponde al id de un contacto
     numeroDocumento:
       in: query
@@ -669,3 +669,10 @@ components:
       schema:
         type: string
       description: corresponde al codigo de un estado
+    idAreaNegocio:
+      in: path
+      name: idAreaNegocio
+      schema:
+        type: integer
+        format: int64
+      description: corresponde al id de un area de negocio
