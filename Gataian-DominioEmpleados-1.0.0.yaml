@@ -676,3 +676,10 @@ components:
         type: integer
         format: int64
       description: corresponde al id de un area de negocio
+    idCargo:
+      in: path
+      name: idCargo
+      schema:
+        type: integer
+        format: int32
+      description: corresponde al id de un cargo
