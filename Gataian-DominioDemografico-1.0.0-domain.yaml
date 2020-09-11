@@ -177,3 +177,10 @@ components:
         type: integer
         format: int32
       description: corresponde al id tipo numero del dominio Demografico 
+    idDepartamento:
+      in: path
+      name: idDemografico
+      schema:
+        type: integer
+        format: int32
+      description: corresponde al id de los deparamentos 
