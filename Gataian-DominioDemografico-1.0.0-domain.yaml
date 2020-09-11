@@ -170,3 +170,10 @@ components:
         maximum: 100
         default: 20
       description: The number of items to return
+    idDemografico:
+      in: path
+      name: idDemografico
+      schema:
+        type: integer
+        format: int32
+      description: corresponde al id tipo numero del dominio Demografico 
