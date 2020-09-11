@@ -184,3 +184,10 @@ components:
         type: integer
         format: int32
       description: corresponde al id de los deparamentos 
+    idCiudad:
+      in: path
+      name: idDemografico
+      schema:
+        type: integer
+        format: int32
+      description: corresponde al id de los deparamentos
